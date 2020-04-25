@@ -17,6 +17,9 @@ export const getStudent = async (studentId: number, res: Response) => {
          where: {
             id: studentId,
          },
+         include: {
+            deadlines: true,
+         },
       });
 
       // If found (not null), return it to user.
@@ -43,7 +46,11 @@ export const getStudents = async (professorId: number, res: Response) => {
                id: professorId,
             },
          })
-         .students();
+         .students({
+            include: {
+               deadlines: true,
+            },
+         });
 
       // Return list of students to user
       res.status(200).json({

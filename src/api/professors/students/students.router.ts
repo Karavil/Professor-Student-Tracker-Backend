@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { getStudents, createStudent } from "./students.helper";
+import { getStudents, createStudent } from "../../../helpers/students.helper";
 import { validate, validationErrors } from "../../../validation/validate";
 
 const router = express.Router({ mergeParams: true });

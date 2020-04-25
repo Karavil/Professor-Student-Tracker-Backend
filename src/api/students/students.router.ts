@@ -3,10 +3,10 @@ import {
    getStudent,
    getStudents,
    createStudent,
-} from "../professors/students/students.helper";
+} from "../../helpers/students.helper";
 import { validate, validationErrors } from "../../validation/validate";
 
-import deadlinesRouter from "../professors/students/deadlines/deadlines.router";
+import deadlinesRouter from "./deadlines/deadlines.router";
 
 const router = express.Router({ mergeParams: true });
 

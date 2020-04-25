@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
-import { getProfessor, createProfessor } from "./professors.helper";
+import { getProfessor, createProfessor } from "../../helpers/professors.helper";
 import { validate, validationErrors } from "../../validation/validate";
 
 import studentsRouter from "./students/students.router";

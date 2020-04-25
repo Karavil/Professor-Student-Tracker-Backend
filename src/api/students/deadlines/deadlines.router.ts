@@ -1,6 +1,10 @@
 import express, { Request, Response } from "express";
-import { getDeadline, getDeadlines, createDeadline } from "./deadlines.helper";
-import { validate, validationErrors } from "../../../../validation/validate";
+import {
+   getDeadline,
+   getDeadlines,
+   createDeadline,
+} from "../../../helpers/deadlines.helper";
+import { validate, validationErrors } from "../../../validation/validate";
 
 const router = express.Router({ mergeParams: true });
 

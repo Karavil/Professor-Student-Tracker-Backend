@@ -22,7 +22,7 @@ export const getProfessor = async (professorId: number, res: Response) => {
 
       // If found (not null), return it to user.
       if (professor) {
-         res.status(200).json({ message: "Professor found.", professor });
+         res.status(200).json({ professor });
       } else {
          // If the professor can't be found, send an error
          res.status(404).json({

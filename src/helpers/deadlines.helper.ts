@@ -21,7 +21,7 @@ export const getDeadline = async (deadlineId: number, res: Response) => {
 
       // If found (not null), return it to user.
       if (deadline) {
-         res.status(200).json({ message: "Deadline found", deadline });
+         res.status(200).json({ deadline });
       } else {
          // If the student can't be found, send an error
          res.status(404).json({
