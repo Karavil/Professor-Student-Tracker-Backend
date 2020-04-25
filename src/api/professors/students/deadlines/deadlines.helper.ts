@@ -65,6 +65,7 @@ export const createDeadline = async (
       const newDeadline = await prisma.deadline.create({
          data: {
             ...deadline,
+            due_date: new Date(deadline.due_date).toISOString(),
             student: {
                connect: {
                   id: studentId,
@@ -74,6 +75,8 @@ export const createDeadline = async (
       });
       res.status(201).json(newDeadline);
    } catch (e) {
-      throw new Error("Database error while creating new student input.");
+      // Some internal database error happened
+      console.log(e);
+      res.status(500).json({ message: e.message });
    }
 };

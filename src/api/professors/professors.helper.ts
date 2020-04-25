@@ -59,6 +59,7 @@ export const createProfessor = async (professor: Professor, res: Response) => {
       });
       res.status(201).json(newProfessor);
    } catch (e) {
-      throw new Error("Database error while creating new professor input.");
+      // Some internal database error happened
+      res.status(500).json({ message: e.message });
    }
 };
