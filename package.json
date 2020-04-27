@@ -4,7 +4,7 @@
    "description": "Backend for the Better Professor web and IOS app",
    "main": "index.js",
    "scripts": {
-      "server": "npx ts-node src/index.ts",
+      "start": "npx ts-node src/index.ts",
       "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' index.ts",
       "generate-prisma": "npx prisma generate",
       "view": "npx prisma studio --experimental"
