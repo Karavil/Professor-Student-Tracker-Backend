@@ -1,12 +1,34 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import {
    getDeadline,
    getDeadlines,
    createDeadline,
 } from "../../utils/helpers/deadlines.helper";
 import { validate, validationErrors } from "../../utils/validation/validate";
+import { AuthenticatedRequest } from "../../utils/authentication/auth.middleware";
+import { isDeadlineOfStudent } from "../../utils/authentication/auth.helper";
 
 const router = express.Router({ mergeParams: true });
+
+// Authenticator to make the deadline belongs to the student that is requested
+const isStudentsDeadline = async (
+   req: AuthenticatedRequest,
+   res: Response,
+   next: NextFunction
+) => {
+   const validated = await isDeadlineOfStudent(
+      Number.parseInt(req.params.studentId),
+      Number.parseInt(req.params.deadlineId)
+   );
+
+   // If the deadline belongs to the student, keep going
+   if (validated) return next();
+
+   // If the deadline does not belong to the student, send an error
+   res.status(401).json({
+      message: "Requested deadline is not assigned to this student",
+   });
+};
 
 // GET requests to /api/professors/:professorId/students/:studentID/deadlines
 router.get("/", (req: Request, res: Response) => {
@@ -21,7 +43,8 @@ router.get("/", (req: Request, res: Response) => {
 router.get(
    "/:deadlineId",
    validate("hasDeadlineId"),
-   (req: Request, res: Response) => {
+   isStudentsDeadline,
+   (req: AuthenticatedRequest, res: Response) => {
       try {
          // Errors from the user input validation
          const errors = validationErrors(req);
@@ -42,21 +65,29 @@ router.get(
 );
 
 // POST requests to /students/deadlines
-router.post("/", validate("createDeadline"), (req: Request, res: Response) => {
-   try {
-      // Errors from the user input validation
-      const errors = validationErrors(req);
-      if (errors.isEmpty()) {
-         createDeadline(req.body, Number.parseInt(req.params.studentId), res);
-      } else {
-         res.status(400).json({
-            message: "Error while processing POST Request",
-            errors: errors.array(),
-         });
+router.post(
+   "/",
+   validate("createDeadline"),
+   (req: AuthenticatedRequest, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         if (errors.isEmpty()) {
+            createDeadline(
+               req.body,
+               Number.parseInt(req.params.studentId),
+               res
+            );
+         } else {
+            res.status(400).json({
+               message: "Error while processing POST Request",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
       }
-   } catch (e) {
-      res.status(500).json({ message: e.message });
    }
-});
+);
 
 export default router;
