@@ -1,9 +1,12 @@
-import express, { Request, Response } from "express";
+import express, { Response } from "express";
+
 import {
    getStudent,
    getStudents,
    createStudent,
 } from "../utils/helpers/students.helper";
+
+import { AuthenticatedRequest } from "../utils/authentication/auth.middleware";
 import { validate, validationErrors } from "../utils/validation/validate";
 
 // For fetching deadlines for each student
@@ -15,38 +18,41 @@ const router = express.Router({ mergeParams: true });
 // Route for fetching deadlines per student id
 router.use("/:studentId/deadlines", validate("hasStudentId"), deadlinesRouter);
 
-// GET requests to /api/professors/:professorId/students/
-router.get("/", (req: Request, res: Response) => {
+// GET requests to /students
+router.get("/", (req: AuthenticatedRequest, res: Response) => {
    try {
-      getStudents(Number.parseInt(req.params.professorId), res);
+      getStudents(req.professorId, res);
    } catch (e) {
       res.status(500).json({ message: e.message });
    }
 });
 
-// POST requests to /api/professors
-router.post("/", validate("createStudent"), (req: Request, res: Response) => {
-   try {
-      // Errors from the user input validation
-      const errors = validationErrors(req);
-      if (errors.isEmpty()) {
-         createStudent(req.body, Number.parseInt(req.params.professorId), res);
-      } else {
-         res.status(400).json({
-            message: "Error while processing POST Request",
-            errors: errors.array(),
-         });
+// POST requests to /students
+router.post(
+   "/",
+   validate("createStudent"),
+   (req: AuthenticatedRequest, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         if (errors.isEmpty()) {
+            createStudent(req.body, req.professorId, res);
+         } else {
+            res.status(400).json({
+               message: "Error while processing POST AuthenticatedRequest",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
       }
-   } catch (e) {
-      res.status(500).json({ message: e.message });
    }
-});
+);
 
-// GET requests to /api/professors/:professorId/students/:studentId
 router.get(
    "/:studentId",
    validate("hasStudentId"),
-   (req: Request, res: Response) => {
+   (req: AuthenticatedRequest, res: Response) => {
       try {
          // Errors from the user input validation
          const errors = validationErrors(req);
@@ -56,7 +62,7 @@ router.get(
          } else {
             // Send errors to the user so they can fix it
             res.status(400).json({
-               message: "Error while processing GET Request",
+               message: "Error while processing GET AuthenticatedRequest",
                errors: errors.array(),
             });
          }

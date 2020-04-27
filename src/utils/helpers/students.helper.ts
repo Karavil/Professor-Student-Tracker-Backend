@@ -54,6 +54,7 @@ export const getStudents = async (professorId: number, res: Response) => {
 
       // Return list of students to user
       res.status(200).json({
+         professorId,
          students,
       });
    } catch (e) {

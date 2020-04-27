@@ -41,13 +41,13 @@ router.get(
    }
 );
 
-// POST requests to /api/professors/:professorId/students/:studentId/deadlines
+// POST requests to /students/deadlines
 router.post("/", validate("createDeadline"), (req: Request, res: Response) => {
    try {
       // Errors from the user input validation
       const errors = validationErrors(req);
       if (errors.isEmpty()) {
-         createDeadline(req.body, Number.parseInt(req.params.id), res);
+         createDeadline(req.body, Number.parseInt(req.params.studentId), res);
       } else {
          res.status(400).json({
             message: "Error while processing POST Request",
