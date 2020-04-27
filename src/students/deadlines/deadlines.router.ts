@@ -3,8 +3,8 @@ import {
    getDeadline,
    getDeadlines,
    createDeadline,
-} from "../../../helpers/deadlines.helper";
-import { validate, validationErrors } from "../../../validation/validate";
+} from "../../utils/helpers/deadlines.helper";
+import { validate, validationErrors } from "../../utils/validation/validate";
 
 const router = express.Router({ mergeParams: true });
 
