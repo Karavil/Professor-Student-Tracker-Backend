@@ -3,11 +3,9 @@ import { body, param, validationResult } from "express-validator";
 // Used to validate HTTP requests made by the user to the server
 export const validate = (method: string) => {
    switch (method) {
-      case "createProfessor": {
+      case "registerProfessor": {
          return [
-            body("first_name", "Should be a string")
-               .isString()
-               .withMessage("Should be a string"),
+            body("first_name", "Should be a string").isString(),
             body("last_name", "Should be a string").isString(),
             body("email", "Should be a valid email").isEmail().normalizeEmail(),
             body("password", "Should be a valid password").isString(),
@@ -58,6 +56,14 @@ export const validate = (method: string) => {
                "deadlineId",
                "Invalid id. Make sure it is included in your request parameter (url)."
             ).isNumeric(),
+         ];
+      }
+      case "hasLoginInfo": {
+         return [
+            body("email", "Please provide a valid email")
+               .isEmail()
+               .normalizeEmail(),
+            body("password", "Please provide a valid password").isString(),
          ];
       }
    }
