@@ -1,5 +1,6 @@
 import express from "express";
 
+import cors from "cors";
 import bodyParser from "body-parser";
 
 import authenticator from "./utils/authentication/auth.middleware";
@@ -10,6 +11,8 @@ import studentsRouter from "./students/students.router";
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use("/auth", authRouter);
 
 app.use(authenticator);
