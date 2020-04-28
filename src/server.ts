@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 
 app.use("/auth", authRouter);
 
-app.use(authenticator);
-app.use("/students", studentsRouter);
+app.use("/students", authenticator, studentsRouter);
 
 // Handle 404 - Keep this as a last route
 app.use(function (req, res, next) {
