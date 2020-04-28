@@ -18,4 +18,10 @@ app.use("/auth", authRouter);
 app.use(authenticator);
 app.use("/students", studentsRouter);
 
+// Handle 404 - Keep this as a last route
+app.use(function (req, res, next) {
+   res.status(404);
+   res.send("404: Route Not Found");
+});
+
 export default app;
