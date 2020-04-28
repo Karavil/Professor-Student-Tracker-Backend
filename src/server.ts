@@ -10,8 +10,8 @@ import studentsRouter from "./students/students.router";
 
 const app = express();
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 app.use("/auth", authRouter);
 
