@@ -54,7 +54,7 @@ export const validate = (method: string) => {
          return [
             param(
                "deadlineId",
-               "Invalid id. Make sure it is included in your request parameter (url)."
+               "Invalid deadline id. Make sure it is included in your request parameter (url)."
             ).isNumeric(),
          ];
       }
@@ -64,6 +64,23 @@ export const validate = (method: string) => {
                .isEmail()
                .normalizeEmail(),
             body("password", "Please provide a valid password").isString(),
+         ];
+      }
+      case "hasNotificationId": {
+         return [
+            param(
+               "notificationId",
+               "Invalid notification id, please provide it in your request parameter (url)"
+            ),
+         ];
+      }
+      case "createNotification": {
+         return [
+            body("message", "Please provide a message").isString(),
+            body(
+               "notify_time",
+               "Please provide a time this notification should be sent in ISO8601 format."
+            ).isISO8601(),
          ];
       }
    }

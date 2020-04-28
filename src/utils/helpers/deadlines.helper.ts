@@ -17,6 +17,9 @@ export const getDeadline = async (deadlineId: number, res: Response) => {
          where: {
             id: deadlineId,
          },
+         include: {
+            notifications: true,
+         },
       });
 
       // If found (not null), return it to user.
@@ -43,7 +46,11 @@ export const getDeadlines = async (studentId: number, res: Response) => {
                id: studentId,
             },
          })
-         .deadlines();
+         .deadlines({
+            include: {
+               notifications: true,
+            },
+         });
 
       // Return list of deadlines to user
       res.status(200).json({

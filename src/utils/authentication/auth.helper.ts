@@ -44,3 +44,25 @@ export const isDeadlineOfStudent = async (
       return false;
    }
 };
+
+export const isNotificationOfDeadline = async (
+   deadlineId: number,
+   notificationId: number
+) => {
+   try {
+      const notifications = await prisma.deadline
+         .findOne({
+            where: {
+               id: deadlineId,
+            },
+         })
+         .notifications({
+            where: {
+               id: notificationId,
+            },
+         });
+      return notifications.length > 0;
+   } catch (e) {
+      return false;
+   }
+};
