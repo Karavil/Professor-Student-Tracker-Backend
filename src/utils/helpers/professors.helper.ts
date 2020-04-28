@@ -53,14 +53,20 @@ export const createProfessor = async (professor: Professor, res: Response) => {
       }
 
       // Create a new professor entry and return it to user
+      const { first_name, last_name, email, password } = professor;
       const newProfessor = await prisma.professor.create({
-         data: professor,
+         data: {
+            first_name,
+            last_name,
+            email,
+            password,
+         },
       });
 
-      const { id, first_name, last_name, email } = newProfessor;
+      delete newProfessor.password;
       res.status(201).json({
          message: "Professor account created",
-         data: { id, first_name, last_name, email },
+         data: newProfessor,
       });
    } catch (e) {
       // Some internal database error happened
