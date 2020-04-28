@@ -68,10 +68,11 @@ export const createNotification = async (
    res: Response
 ) => {
    try {
+      const { message, notify_time } = notification;
       const newNotification = await prisma.notification.create({
          data: {
-            ...notification,
-            notify_time: new Date(notification.notify_time).toISOString(),
+            message,
+            notify_time: new Date(notify_time).toISOString(),
             deadline: {
                connect: {
                   id: deadlineId,

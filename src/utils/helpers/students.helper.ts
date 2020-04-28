@@ -69,10 +69,14 @@ export const createStudent = async (
    professorId: number,
    res: Response
 ) => {
+   const { first_name, last_name, email, phone_number } = student;
    try {
       const newStudent = await prisma.student.create({
          data: {
-            ...student,
+            first_name,
+            last_name,
+            email,
+            phone_number,
             professor: {
                connect: {
                   id: professorId,

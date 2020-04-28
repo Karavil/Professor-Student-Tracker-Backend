@@ -69,10 +69,12 @@ export const createDeadline = async (
    res: Response
 ) => {
    try {
+      const { name, due_date, description } = deadline;
       const newDeadline = await prisma.deadline.create({
          data: {
-            ...deadline,
-            due_date: new Date(deadline.due_date).toISOString(),
+            name,
+            description,
+            due_date: new Date(due_date).toISOString(),
             student: {
                connect: {
                   id: studentId,
