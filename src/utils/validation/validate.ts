@@ -23,12 +23,23 @@ export const validate = (method: string) => {
       // Used for creating a professor object in DB (POST)
       case "createStudent": {
          return [
-            body("first_name", "Should be a string")
-               .isString()
-               .withMessage("Should be a string"),
+            body("first_name", "Should be a string").isString(),
             body("last_name", "Should be a string").isString(),
             body("email", "Should be a valid email").isEmail().normalizeEmail(),
             body("phone_number", "Invalid phone number").isMobilePhone("any"),
+         ];
+      }
+      case "editStudent": {
+         return [
+            body("first_name", "Should be a string").isString().optional(),
+            body("last_name", "Should be a string").isString().optional(),
+            body("email", "Should be a valid email")
+               .isEmail()
+               .normalizeEmail()
+               .optional(),
+            body("phone_number", "Invalid phone number")
+               .isMobilePhone("any")
+               .optional(),
          ];
       }
       // Used for fetching a professor with an id (GET)

@@ -4,6 +4,8 @@ import {
    getStudent,
    getStudents,
    createStudent,
+   deleteStudent,
+   editStudent,
 } from "../utils/helpers/students.helper";
 
 import { isStudentOfProfessor } from "../utils/authentication/auth.helper";
@@ -91,6 +93,55 @@ router.get(
             // Send errors to the user so they can fix it
             res.status(400).json({
                message: "Error while processing GET AuthenticatedRequest",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
+      }
+   }
+);
+
+router.patch(
+   "/:studentId",
+   validate("hasStudentId"),
+   validate("editStudent"),
+   isProfessorsStudent,
+   (req: AuthenticatedRequest, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         // If there are no errors, add to database and resolve response
+         if (errors.isEmpty()) {
+            editStudent(Number.parseInt(req.params.studentId), req.body, res);
+         } else {
+            // Send errors to the user so they can fix it
+            res.status(400).json({
+               message: "Error while processing DEL request",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
+      }
+   }
+);
+
+router.delete(
+   "/:studentId",
+   validate("hasStudentId"),
+   isProfessorsStudent,
+   (req: AuthenticatedRequest, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         // If there are no errors, add to database and resolve response
+         if (errors.isEmpty()) {
+            deleteStudent(Number.parseInt(req.params.studentId), res);
+         } else {
+            // Send errors to the user so they can fix it
+            res.status(400).json({
+               message: "Error while processing DEL request",
                errors: errors.array(),
             });
          }
