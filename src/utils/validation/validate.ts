@@ -30,17 +30,8 @@ export const validate = (method: string) => {
          ];
       }
       case "editStudent": {
-         return [
-            body("first_name", "Should be a string").isString().optional(),
-            body("last_name", "Should be a string").isString().optional(),
-            body("email", "Should be a valid email")
-               .isEmail()
-               .normalizeEmail()
-               .optional(),
-            body("phone_number", "Invalid phone number")
-               .isMobilePhone("any")
-               .optional(),
-         ];
+         let requirements: any = validate("createStudent");
+         return requirements.map((req: any) => req.optional());
       }
       // Used for fetching a professor with an id (GET)
       case "hasStudentId": {
@@ -60,6 +51,10 @@ export const validate = (method: string) => {
             body("description", "Should be a string").isString().optional(),
             body("due_date", "Enter a valid time (ISO8601 format)").isISO8601(),
          ];
+      }
+      case "editDeadline": {
+         let requirements: any = validate("createDeadline");
+         return requirements.map((req: any) => req.optional());
       }
       case "hasDeadlineId": {
          return [
@@ -93,6 +88,10 @@ export const validate = (method: string) => {
                "Please provide a time this notification should be sent in ISO8601 format."
             ).isISO8601(),
          ];
+      }
+      case "editNotification": {
+         let requirements: any = validate("createNotification");
+         return requirements.map((req: any) => req.optional());
       }
    }
 };

@@ -6,6 +6,8 @@ import {
    getDeadline,
    getDeadlines,
    createDeadline,
+   editDeadline,
+   deleteDeadline,
 } from "../../utils/helpers/deadlines.helper";
 import { isDeadlineOfStudent } from "../../utils/authentication/auth.helper";
 
@@ -90,5 +92,54 @@ router.post("/", validate("createDeadline"), (req: Request, res: Response) => {
       res.status(500).json({ message: e.message });
    }
 });
+console.log(validate("editDeadline"));
+router.patch(
+   "/:deadlineId",
+   validate("hasDeadlineId"),
+   validate("editDeadline"),
+   isStudentsDeadline,
+   (req: Request, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         // If there are no errors, add to database and resolve response
+         if (errors.isEmpty()) {
+            editDeadline(Number.parseInt(req.params.deadlineId), req.body, res);
+         } else {
+            // Send errors to the user so they can fix it
+            res.status(400).json({
+               message: "Error while processing DEL request",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
+      }
+   }
+);
+
+router.delete(
+   "/:deadlineId",
+   validate("hasDeadlineId"),
+   isStudentsDeadline,
+   (req: Request, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         // If there are no errors, add to database and resolve response
+         if (errors.isEmpty()) {
+            deleteDeadline(Number.parseInt(req.params.deadlineId), res);
+         } else {
+            // Send errors to the user so they can fix it
+            res.status(400).json({
+               message: "Error while processing DEL request",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
+      }
+   }
+);
 
 export default router;
