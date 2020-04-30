@@ -112,7 +112,7 @@ export const editDeadline = async (
    res: Response
 ) => {
    try {
-      const editedStudent = await prisma.deadline.update({
+      const updated = await prisma.deadline.update({
          where: {
             id: deadlineId,
          },
@@ -121,7 +121,7 @@ export const editDeadline = async (
 
       res.status(200).json({
          message: "Deadline successfully updated",
-         student: editedStudent,
+         deadline: updated,
       });
    } catch (e) {
       res.status(500).json({ message: e.message });

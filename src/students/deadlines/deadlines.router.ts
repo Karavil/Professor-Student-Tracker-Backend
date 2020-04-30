@@ -92,7 +92,7 @@ router.post("/", validate("createDeadline"), (req: Request, res: Response) => {
       res.status(500).json({ message: e.message });
    }
 });
-console.log(validate("editDeadline"));
+
 router.patch(
    "/:deadlineId",
    validate("hasDeadlineId"),

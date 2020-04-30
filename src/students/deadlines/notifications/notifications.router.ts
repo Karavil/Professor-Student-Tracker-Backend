@@ -3,6 +3,8 @@ import {
    getNotification,
    getNotifications,
    createNotification,
+   editNotification,
+   deleteNotification,
 } from "../../../utils/helpers/notifications.helper";
 import { validate, validationErrors } from "../../../utils/validation/validate";
 import { isNotificationOfDeadline } from "../../../utils/authentication/auth.helper";
@@ -10,7 +12,7 @@ import { isNotificationOfDeadline } from "../../../utils/authentication/auth.hel
 const router = express.Router({ mergeParams: true });
 
 // Authenticator to make the notification belongs to the deadline that is requested
-const isNotificationsNotification = async (
+const isDeadlinesNotification = async (
    req: Request,
    res: Response,
    next: NextFunction
@@ -42,7 +44,7 @@ router.get("/", (req: Request, res: Response) => {
 router.get(
    "/:notificationId",
    validate("hasNotificationId"),
-   isNotificationsNotification,
+   isDeadlinesNotification,
    (req: Request, res: Response) => {
       try {
          // Errors from the user input validation
@@ -80,6 +82,59 @@ router.post(
          } else {
             res.status(400).json({
                message: "Error while processing POST Request",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
+      }
+   }
+);
+
+router.patch(
+   "/:notificationId",
+   validate("hasNotificationId"),
+   validate("editDeadline"),
+   isDeadlinesNotification,
+   (req: Request, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         // If there are no errors, add to database and resolve response
+         if (errors.isEmpty()) {
+            editNotification(
+               Number.parseInt(req.params.notificationId),
+               req.body,
+               res
+            );
+         } else {
+            // Send errors to the user so they can fix it
+            res.status(400).json({
+               message: "Error while processing DEL request",
+               errors: errors.array(),
+            });
+         }
+      } catch (e) {
+         res.status(500).json({ message: e.message });
+      }
+   }
+);
+
+router.delete(
+   "/:notificationId",
+   validate("hasNotificationId"),
+   isDeadlinesNotification,
+   (req: Request, res: Response) => {
+      try {
+         // Errors from the user input validation
+         const errors = validationErrors(req);
+         // If there are no errors, add to database and resolve response
+         if (errors.isEmpty()) {
+            deleteNotification(Number.parseInt(req.params.notificationId), res);
+         } else {
+            // Send errors to the user so they can fix it
+            res.status(400).json({
+               message: "Error while processing DEL request",
                errors: errors.array(),
             });
          }
