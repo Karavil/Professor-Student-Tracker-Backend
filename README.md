@@ -1,6 +1,7 @@
 # Better Professor
 
 -  [Postman Documentation](https://documenter.getpostman.com/view/10396314/SzfCV6E1?version=latest)
+-  Base API URL for fetching your students: [https://better-professor-karavil.herokuapp.com/students](https://better-professor-karavil.herokuapp.com/students)
 
 ## Indices
 
