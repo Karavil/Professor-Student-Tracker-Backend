@@ -6,6 +6,7 @@ import authenticator from "./utils/authentication/auth.middleware";
 
 import authRouter from "./auth/auth.router";
 import studentsRouter from "./students/students.router";
+import profileRouter from "./profile/profile.router";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/auth", authRouter);
 
 // This route requires JSON web token with professor ID to access
 // This is generated after logging in
+app.use("/profile", authenticator, profileRouter);
 app.use("/students", authenticator, studentsRouter);
 
 // Handle 404 - Last route if nothing happens before this
