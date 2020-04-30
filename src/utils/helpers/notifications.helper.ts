@@ -74,7 +74,7 @@ export const createNotification = async (
          data: {
             message,
             notify_time: new Date(notify_time).toISOString(),
-            deadline: {
+            Deadline: {
                connect: {
                   id: deadlineId,
                },

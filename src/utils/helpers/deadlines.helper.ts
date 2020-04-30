@@ -76,7 +76,7 @@ export const createDeadline = async (
             name,
             description,
             due_date: new Date(due_date).toISOString(),
-            student: {
+            Student: {
                connect: {
                   id: studentId,
                },
