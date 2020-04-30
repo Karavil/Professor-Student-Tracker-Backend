@@ -1,5 +1,7 @@
 # Better Professor
 
+-  [Postman Documentation](https://documenter.getpostman.com/view/10396314/SzfCV6E1?version=latest)
+
 ## Indices
 
 -  [Default](#default)
@@ -34,9 +36,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/3/deadlines/1
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 **_Body:_**
 
@@ -58,9 +60,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/3/deadlines/1
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 ### 3. Get deadline notifications
 
@@ -74,9 +76,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/1/deadlines/1/notif
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 ### 4. Create deadline notification
 
@@ -90,9 +92,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/3/deadlines/2/notif
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 **_Body:_**
 
@@ -115,9 +117,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/5/deadlines
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 **_Body:_**
 
@@ -140,9 +142,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/3/deadlines
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 ### 7. Delete student
 
@@ -156,9 +158,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/2
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 ### 8. Edit student
 
@@ -172,9 +174,9 @@ URL: https://better-professor-karavil.herokuapp.com/students/3
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 **_Body:_**
 
@@ -199,9 +201,9 @@ URL: https://better-professor-karavil.herokuapp.com/students
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 **_Body:_**
 
@@ -226,9 +228,9 @@ URL: https://better-professor-karavil.herokuapp.com/profile
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 ### 11. Get students
 
@@ -242,9 +244,9 @@ URL: https://better-professor-karavil.herokuapp.com/students
 
 **_Headers:_**
 
-| Key           | Value                                                                                                                           | Description |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9mZXNzb3JJZCI6MSwiaWF0IjoxNTg4MDE1Nzg5fQ.0oV573hCdc-J2vhygzbhtR3q20S8YpN6Aq7NrOwtjD8 |             |
+| Key           | Value                                 | Description |
+| ------------- | ------------------------------------- | ----------- |
+| Authorization | JWT Token (provided after logging in) |             |
 
 ### 12. Register
 
@@ -289,5 +291,3 @@ URL: https://better-professor-karavil.herokuapp.com/auth/login
 ---
 
 [Back to top](#better-professor)
-
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-04-30 18:00:03 by [docgen](https://github.com/thedevsaddam/docgen)
