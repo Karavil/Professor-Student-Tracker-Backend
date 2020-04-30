@@ -19,7 +19,11 @@ export const getStudent = async (studentId: number, res: Response) => {
             id: studentId,
          },
          include: {
-            deadlines: true,
+            deadlines: {
+               include: {
+                  notifications: true,
+               },
+            },
          },
       });
 
@@ -49,7 +53,11 @@ export const getStudents = async (professorId: number, res: Response) => {
          })
          .students({
             include: {
-               deadlines: true,
+               deadlines: {
+                  include: {
+                     notifications: true,
+                  },
+               },
             },
          });
 
